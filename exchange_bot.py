@@ -1,5 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
+from email.mime.text import MIMEText
+import smtplib
+
+import requests
+from bs4 import BeautifulSoup
 
 def get_exchange_rates():
 
@@ -50,6 +55,31 @@ def get_exchange_rates():
 
     return "\n".join(lines)
 
+
+
+def send_email(subject, body, sender_email, receiver_email, smtp_server, smtp_port, login, password):
+    msg = MIMEText(body)
+    msg["Subject"] = subject
+    msg["From"] = sender_email
+    msg["To"] = receiver_email
+
+    with smtplib.SMTP_SSL(smtp_server, smtp_port) as server:
+        server.login(login, password)
+        server.sendmail(sender_email, receiver_email, msg.as_string())
+
+
 if __name__ == "__main__":
     rates = get_exchange_rates()
-    print(rates)
+    print(rates)  # optional
+
+    # Replace these with your actual details
+    sender = "your-gmail@gmail.com"
+    receiver = "your-gmail@gmail.com"
+    login = "your-gmail@gmail.com"
+    smtp_server = "smtp.gmail.com"
+    smtp_port = 465
+    password = "your-password"
+
+    send_email("Daily Exchange Rates", rates, sender, receiver, smtp_server, smtp_port, login, password)
+
+
