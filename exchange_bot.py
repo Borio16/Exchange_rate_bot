@@ -73,11 +73,11 @@ if __name__ == "__main__":
     print(rates)  # optional
 
     # Replace these with your actual details
-    sender = "your-gmail@gmail.com"
-    receiver = "your-gmail@gmail.com"
-    login = "your-gmail@gmail.com"
+    sender = "your-email@gmail.com"
+    receiver = "your-email@gmail.com"
     smtp_server = "smtp.gmail.com"
     smtp_port = 465
+    login = "your-email@gmail.com"
     password = "your-password"
 
     send_email("Daily Exchange Rates", rates, sender, receiver, smtp_server, smtp_port, login, password)
